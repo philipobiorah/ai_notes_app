@@ -21,6 +21,8 @@ def root():
 #         "content": note.content
 #     }
 
+
+# Create a new note
 @app.post("/notes")
 def create_note(note: NoteCreate, db: Session = Depends(get_db)):
     new_note = Note(title=note.title, content=note.content)
@@ -28,3 +30,10 @@ def create_note(note: NoteCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_note)
     return {"id": new_note.id, "title": new_note.title, "content": new_note.content}
+
+# Get all notes
+@app.get("/notes")
+def get_notes(db: Session = Depends(get_db)):
+    notes = db.query(Note).all()
+    return notes
+
