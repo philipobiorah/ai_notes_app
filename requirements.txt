@@ -2,4 +2,5 @@ fastapi
 uvicorn[standard]
 sqlalchemy
 textblob
-
+python-jose[cryptography]
+passlib[bcrypt]

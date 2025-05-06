@@ -1,3 +1,4 @@
+import './App.css';
 import React, { useState, useEffect } from 'react';
 import API from './api';
 
@@ -56,9 +57,9 @@ function App() {
   }, []);
 
   return (
-    <div style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto' }}>
+    <div className="container">
       <h1>AI Notes App</h1>
-
+  
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -66,33 +67,34 @@ function App() {
           value={form.title}
           onChange={(e) => setForm({ ...form, title: e.target.value })}
           required
-        /><br /><br />
+        />
         <textarea
           placeholder="Content (10+ chars)"
           rows="4"
           value={form.content}
           onChange={(e) => setForm({ ...form, content: e.target.value })}
           required
-        /><br /><br />
+        />
         <button type="submit">Save Note</button>
         <p>{message}</p>
       </form>
-
+  
       <h2>All Notes</h2>
       {notes.map(note => (
-        <div key={note.id} style={{ border: '1px solid #ccc', padding: '1rem', marginBottom: '1rem' }}>
+        <div className="note" key={note.id}>
           <h3>{note.title}</h3>
           <p>{note.content}</p>
-          <p>
+          <p className="sentiment">
             Sentiment: {note.sentiment || 'Not analyzed'}
-            <button onClick={() => handleAnalyze(note.id)} style={{ marginLeft: '1rem' }}>
-              Analyze
-            </button>
           </p>
+          <button onClick={() => handleAnalyze(note.id)}>
+            Analyze
+          </button>
         </div>
       ))}
     </div>
   );
+  
 }
 
 export default App;
