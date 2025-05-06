@@ -1,6 +1,6 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from app.models import NoteCreate
-from fastapi import Depends
+from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 from app.database import SessionLocal, Note, get_db
 from app.sentiment_analyzer import analyze_sentiment
@@ -22,7 +22,7 @@ app.add_middleware(
 
 #basic route
 @app.get("/")
-def root(username: str = Depends(verify_jwt_token)):
+def root():
     return {"message": "Welcome to the AI Notes App!"}
 
 
@@ -33,6 +33,7 @@ def login(form_data: OAuth2PasswordRequestForm = Depends()):
         raise HTTPException(status_code=401, detail="Invalid credentials")
     access_token = create_access_token(data={"sub": user["username"]})
     return {"access_token": access_token, "token_type": "bearer"}
+
 
 
 # Create a new note

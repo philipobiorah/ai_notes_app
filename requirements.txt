@@ -4,3 +4,4 @@ sqlalchemy
 textblob
 python-jose[cryptography]
 passlib[bcrypt]
+python-multipart

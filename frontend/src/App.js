@@ -13,17 +13,26 @@ function App() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const res = await API.post('/token', new URLSearchParams(loginForm), {
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+      const form = new URLSearchParams();
+      form.append("username", loginForm.username);
+      form.append("password", loginForm.password);
+  
+      const res = await API.post('/token', form, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
       });
-      localStorage.setItem('token', res.data.access_token);
+  
+      localStorage.setItem("token", res.data.access_token);
       setAuth(true);
       setLoginForm({ username: '', password: '' });
       fetchNotes();
     } catch (err) {
       alert('Login failed. Please check your username/password.');
+      console.error(err);
     }
   };
+  
 
   // Logout
   const handleLogout = () => {
