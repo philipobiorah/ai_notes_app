@@ -20,18 +20,7 @@ AI Notes App is a full-stack note-taking application that provides JWT-based use
 
 ## Project Structure
 
-ai_notes_app/
-├── app/ # FastAPI backend
-│ ├── main.py
-│ ├── database.py
-│ ├── auth_jwt.py
-│ └── data/ # SQLite database location
-├── frontend/ # React frontend
-│ ├── src/
-│ └── Dockerfile
-├── requirements.txt # Python dependencies
-├── Dockerfile # Backend Dockerfile
-├── docker-compose.yml # Orchestration file
+<pre> ai_notes_app/ ├── app/ # FastAPI backend │ ├── main.py │ ├── database.py │ ├── auth_jwt.py │ └── data/ # SQLite database location ├── frontend/ # React frontend │ ├── src/ │ └── Dockerfile ├── requirements.txt # Python dependencies ├── Dockerfile # Backend Dockerfile ├── docker-compose.yml # Orchestration file </pre>
 
 
 
