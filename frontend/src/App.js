@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import API from './api';
 
 const API_BASE = "http://localhost:8000";
 const API_KEY = "mysecretkey";
@@ -12,7 +12,7 @@ function App() {
   // Load all notes
   const fetchNotes = async () => {
     try {
-      const res = await axios.get(`${API_BASE}/notes`, {
+      const res = await API.get(`${API_BASE}/notes`, {
         headers: { "x-api-key": API_KEY }
       });
       setNotes(res.data);
@@ -25,7 +25,7 @@ function App() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${API_BASE}/notes`, form, {
+      const res = await API.post(`${API_BASE}/notes`, form, {
         headers: { "x-api-key": API_KEY }
       });
       setMessage("Note saved!");
@@ -39,7 +39,7 @@ function App() {
   // Analyze sentiment
   const handleAnalyze = async (id) => {
     try {
-      const res = await axios.get(`${API_BASE}/notes/${id}/analyze`, {
+      const res = await API.get(`${API_BASE}/notes/${id}/analyze`, {
         headers: { "x-api-key": API_KEY }
       });
       const updatedNotes = notes.map(n => (
@@ -57,7 +57,7 @@ function App() {
 
   return (
     <div style={{ padding: '2rem', maxWidth: '600px', margin: '0 auto' }}>
-      <h1>📝 AI Notes App</h1>
+      <h1>AI Notes App</h1>
 
       <form onSubmit={handleSubmit}>
         <input
