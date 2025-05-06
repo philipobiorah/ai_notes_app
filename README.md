@@ -1,3 +1,5 @@
+![Backend Tests](https://github.com/philipobiorah/ai_notes_app/actions/workflows/ci.yml/badge.svg)
+
 # AI Notes App
 
 AI Notes App is a full-stack note-taking application that provides JWT-based user authentication and sentiment analysis using natural language processing. It is built with FastAPI for the backend, React for the frontend, and Docker Compose for deployment.
